@@ -16,11 +16,8 @@ lines = read_input("day5.txt")
 seeds = [int(x) for x in re.findall(r'\d+', lines[0])]
 
 maps = {}
-maps_rev = {}
 maps_values = defaultdict(list)
 maps_values.default_factory = lambda: []
-maps_values_rev = defaultdict(list)
-maps_values_rev.default_factory = lambda: []
 
 for line in lines[2:]:
   if len(line) < 1:

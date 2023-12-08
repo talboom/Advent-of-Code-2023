@@ -5,7 +5,6 @@ import math
 lines = read_input("day7.txt")
 hands = [[x[0], int(x[1])] for h in lines for x in [h.split()]]
 
-
 def hand_type(hand):
   char_dict = {}
   for char in hand:

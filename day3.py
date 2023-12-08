@@ -58,7 +58,6 @@ for i, line in enumerate(input):
             gears[(start_line+j,start_pos+k)].append(number)
             sum_gear_ratio +=  prev[0]*number
 
-
 sum_gear_ratio_2 = 0
 
 for val in gears.values():
@@ -68,6 +67,5 @@ for val in gears.values():
       product *= v
     sum_gear_ratio_2 += product
     
-
 print(sum_gear_ratio)
 print(sum_gear_ratio_2)

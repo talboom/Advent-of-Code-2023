@@ -27,7 +27,6 @@ for i, line in enumerate(input):
 
 print(res_sum)
 
-
 res_sum = 0 
 for i, line in enumerate(input):
   valid_game = True
