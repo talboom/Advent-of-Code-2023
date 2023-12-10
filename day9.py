@@ -1,13 +1,13 @@
 from utils import read_input
 import re
 
-input = read_input("day9.txt")
+input = read_input("day9_test.txt")
 sequences = []
 for line in input:
   sequences.append([int(x) for x in re.findall(r'-?\d+', line)])
 
 # simple
-part_1 = 0
+part_1 = []
 for s in sequences:
   levels = [s]
   while max(levels[-1]) != 0 or min(levels[-1]) != 0:
@@ -19,7 +19,7 @@ for s in sequences:
   for j, s in enumerate(reversed(levels[:-1])):
       levels[-j-2].append(s[-1]+addition)
       addition = levels[-j-2][-1]
-  part_1 += levels[0][-1]
+  part_1.append(levels[0][-1])
 print(part_1)
 
 # simple
