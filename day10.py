@@ -2,9 +2,6 @@ from utils import read_input
 
 input = read_input("day10.txt")
 
-# ASSUMPTIONS
-# - S is not in the border
-
 symbol_pipe = {
   '|' : [1,0,1,0],
   '-' : [0,1,0,1],
@@ -23,20 +20,25 @@ position = start_position
 # create twin
 twin = [['.']*len(line) for line in input]
 
+
 # get start symbol
 north = input[start_position[0]-1][start_position[1]]
 east = input[start_position[0]][start_position[1]+1]
 south = input[start_position[0]+1][start_position[1]]
-if north in ['|','7','F'] and start_position[0] > 0:
-  symbol = north
-  direction = [1,0,0,0]
-elif east in ['-','7','J'] and start_position[1] < len(input[0])-1:
-  symbol = east
-  direction = [0,1,0,0]
-elif south in ['|','J','L'] and start_position[0] < len(input)-1:
-  symbol = south
-  direction = [0,0,1,0]
 
+if north in ['|','7','F'] and start_position[0] > 0:
+  start_symbol = north
+  start_direction = [1,0,0,0]
+elif east in ['-','7','J'] and start_position[1] < len(input[0])-1:
+  start_symbol = east
+  start_direction = [0,1,0,0]
+elif south in ['|','J','L'] and start_position[0] < len(input)-1:
+  start_symbol = south
+  start_direction = [0,0,1,0]
+
+# PART 1
+symbol = start_symbol
+direction = start_direction
 position = [position[0]-direction[0]+direction[2], position[1]+direction[1]-direction[3]]
 twin[position[0]][position[1]] = symbol
 steps = 0
@@ -49,18 +51,10 @@ while symbol != 'S':
   steps += 1
 print((steps+1)/2)
 
-# find if left or right is inside
+# PART 2
 position = start_position
-if north in ['|','7','F']:
-  symbol = north
-  direction = [1,0,0,0]
-elif east in ['_','7','J']:
-  symbol = east
-  direction = [0,1,0,0]
-elif south in ['|','J','L']:
-  symbol = south
-  direction = [0,0,1,0]
-
+symbol = start_symbol
+direction = start_direction
 position = [position[0]-direction[0]+direction[2], position[1]+direction[1]-direction[3]]
 while symbol != 'S':
   #find next step direction
@@ -88,8 +82,6 @@ while symbol != 'S':
   if outside_direction[3] == 1 and position[1] > 0 and twin[position[0]][position[1]-1] == '.':
     twin[position[0]][position[1]-1] = 'O'
   
-    
-
   direction = [x - y for x, y in zip(symbol_pipe[symbol], direction_orig)]
   position = [position[0]-direction[0]+direction[2], position[1]+direction[1]-direction[3]]
   symbol = input[position[0]][position[1]]
