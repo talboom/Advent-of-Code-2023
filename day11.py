@@ -1,5 +1,4 @@
 from utils import read_input
-import re
 
 input = read_input("day11.txt")
 
