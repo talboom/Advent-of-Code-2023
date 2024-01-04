@@ -1,5 +1,4 @@
 from utils import read_input
-from collections import defaultdict
 
 input = read_input("day15.txt")
 sequence = input[0].split(',')
