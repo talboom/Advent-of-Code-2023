@@ -2,9 +2,7 @@ import os
 from utils import read_input
 # Open file day1.txt in read mode
 
-
 data = read_input("day1.txt")
-
 
 # function that removes all letter from string
 def remove_letters(s):
