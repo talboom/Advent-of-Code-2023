@@ -1,5 +1,7 @@
 import re
+from collections import Counter
 from utils import read_input
+
 # Open file day1.txt in read mode
 
 data = read_input("day1.txt")
@@ -14,8 +16,9 @@ result_part1 = sum(abs(l_1-l_2) for l_1, l_2 in zip(list_1, list_2))
 print(result_part1)
 
 result_part2 = 0
+counter = Counter(list_2)
+
 for l_1 in list_1:
-    occurance = sum(1 for l_2 in list_2 if l_1 == l_2)
-    result_part2 += occurance * l_1
+    result_part2 += counter[l_1] * l_1
 
 print(result_part2)
