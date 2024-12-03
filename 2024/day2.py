@@ -1,5 +1,4 @@
 import re
-from collections import Counter
 from utils import read_input
 
 def check_reports(r):
