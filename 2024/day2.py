@@ -3,16 +3,19 @@ from utils import read_input
 
 def check_reports(r):
     safe = -1
+    check_starting_two = False
     increasing = 1 if r[0] < r[1] else -1
     for i,l in enumerate(r):
         if i == len(r) - 1:
             break
-        if not (r[i]*increasing < r[i+1]*increasing and not r[i] == r[i+1] and abs(r[i] - r[i+1]) < 4):
+        if not (r[i]*increasing < r[i+1]*increasing and abs(r[i] - r[i+1]) < 4):
             safe = i
+            if not r[i]*increasing < r[i+1]*increasing:
+                check_starting_two = True
             break
-    return safe
+    return safe,check_starting_two
 
-data = read_input("day2.txt")
+data = read_input("day2_test.txt")
 reports = []
 for d in data:
     report = [int(x) for x in re.findall(r'\d+', d)]
@@ -20,21 +23,20 @@ for d in data:
 
 safe_reports = 0
 for r in reports:
-    safe_reports += 1 if check_reports(r) == -1 else 0
+    safe_reports += 1 if check_reports(r)[0] == -1 else 0
 
 print(safe_reports)
 
 safe_reports = 0
 for r in reports:
-    safe_report = check_reports(r)
+    safe_report,check_starting_two = check_reports(r)
     if safe_report == -1:
         safe_reports += 1
     else:
-        r_1 = r.copy()
-        r_2 = r.copy()
-        del r_1[safe_report]
-        del r_2[safe_report+1]
-        if check_reports(r_1) == -1 or check_reports(r_2) == -1:
-            safe_reports += 1
+        for i in range(len(r)):
+            if check_reports(r[:i]+r[i+1:])[0] == -1:
+                safe_reports += 1
+                break
+                
         
 print(safe_reports)
