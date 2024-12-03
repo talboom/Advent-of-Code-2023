@@ -2,8 +2,6 @@ import re
 from collections import Counter
 from utils import read_input
 
-# Open file day1.txt in read mode
-
 data = read_input("day1.txt")
 
 list_1, list_2 = zip(*[[int(x) for x in re.findall(r'\d+', d)] for d in data])
