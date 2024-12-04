@@ -15,7 +15,7 @@ def check_reports(r):
             break
     return safe,check_starting_two
 
-data = read_input("day2_test.txt")
+data = read_input("day2.txt")
 reports = []
 for d in data:
     report = [int(x) for x in re.findall(r'\d+', d)]
