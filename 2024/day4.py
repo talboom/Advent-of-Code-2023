@@ -11,7 +11,6 @@ for d in data:
 max_x = len(puzzle)
 max_y = len(puzzle[0])
 
-
 directions = [
     [0, 1],  # right
     [1, 1],  # down-right
@@ -31,21 +30,17 @@ for x,r in enumerate(puzzle):
         if c == "X":
             x_positions.append((x,y))
 
-for x,y in x_positions:
-    for d in directions:
-        xmas_index = 1
-        x_cursor = x
-        y_cursor = y
+for x, y in x_positions:
+    for dx, dy in directions:
+        x_cursor, y_cursor, xmas_index = x, y, 1
         while True:
-            x_cursor += d[0]
-            y_cursor += d[1]
-            
-            if not (0 <= x_cursor < max_x and 0 <= y_cursor < max_y):
+            x_cursor += dx
+            y_cursor += dy
+            if not(0 <= x_cursor < max_x and 0 <= y_cursor < max_y):
                 break
-            
-            elif (puzzle[x_cursor][y_cursor] == search_word[xmas_index]):
+            if xmas_index < len(search_word) and puzzle[x_cursor][y_cursor] == search_word[xmas_index]:
                 xmas_index += 1
-                if xmas_index == 4:
+                if xmas_index == len(search_word):
                     result_part1 += 1
                     break
             else:
