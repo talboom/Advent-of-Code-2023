@@ -3,10 +3,7 @@ from utils import read_input
 
 data = read_input("day4.txt")
 
-puzzle = []
-for d in data:
-    line = [x for x in d]
-    puzzle.append(line)
+puzzle = [list(d) for d in data]
 
 max_x = len(puzzle)
 max_y = len(puzzle[0])
